@@ -8,14 +8,14 @@ import sys
 
 # Complete the minimumBribes function below.
 def minimumBribes(q):
-
     bribes = 0
-    for p in q:
-        ind = q.index(p)
-        if (p - ind > 3):
+    for ind, p in enumerate(q):
+        print ind, p
+        if (p - 1 - ind > 2):
             print "Too chaotic"
             return
-        bribes += sum(i < p for i in q[ind:])
+        print q[max(p-2, 0):ind]
+        bribes += sum(i > p for i in q[max(p-2, 0):ind])
     print bribes
     
 if __name__ == '__main__':
