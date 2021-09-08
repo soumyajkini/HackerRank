@@ -18,6 +18,8 @@ def minimumSwaps(arr):
             swaps += 1
         else:
             i += 1
+            
+    print arr
     print swaps
         
 

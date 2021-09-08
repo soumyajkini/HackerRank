@@ -1,0 +1,21 @@
+def largestDivisibleSubset(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: List[int]
+    """
+
+    res = [[]]
+    maxNum = max(nums)
+
+    le = 0
+    for n in nums:
+        res = [1]
+        j = 1
+        p = n**j
+        while (p <= maxNum and p in nums):
+            res.append(p)
+            j += 1
+            p = p*j
+        if (len(res) > le):
+            fin = res
+    return fin

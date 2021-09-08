@@ -6,22 +6,25 @@ import random
 import re
 import sys
 
-def getMedian(expenditures, d):
-    expenditures.sort()
-    print d
-    print expenditures
-    if (d % 2 == 0):
-        return (expenditures[d/2 - 1] + expenditures[d/2]) / 2
-    else:
-        return (expenditures[d/2])
+def getMedian(trailing, d):
+    trailing = sorted(trailing)
+    print trailing, trailing[(d-1)/2], trailing[d/2], d
+    if d % 2 != 0: return float(trailing[d/2])
+    else: return float((trailing[(d-1)/2] + trailing[d/2]) / 2.0)
         
 # Complete the activityNotifications function below.
 def activityNotifications(expenditures, d):
     
+    notices = 0
+    trailing = expenditures[0:d]
+    median = getMedian(trailing, d)
+    
+    print expenditures, trailing
     for i in range(d, len(expenditures)):
-        trailing = expenditures[i-d:i]
-        print "Trailing", trailing
-        print "Median", getMedian(trailing, d)
+        trailing = (trailing[1:d])
+        if (expenditures[i] >= 2*median): notices += 1
+    print notices
+    return notices
 
 if __name__ == '__main__':
     #fptr = open(os.environ['OUTPUT_PATH'], 'w')
